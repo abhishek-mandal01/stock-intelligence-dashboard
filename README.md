@@ -1,6 +1,7 @@
 # Stock Intelligence Dashboard
 
 This is a stock intelligence dashboard that shows NSE stock prices, charts, market breadth, comparison data, and a basic prediction line using a FastAPI backend with a HTML/CSS/JavaScript frontend.
+Deployed on Railway.com.
 
 It shows some NSE stock data, charts, comparison, market breadth and a small prediction line. The prediction is very basic, so it should not be used for real trading.
 
