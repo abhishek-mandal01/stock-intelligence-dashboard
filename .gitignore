@@ -6,4 +6,3 @@ __pycache__/
 backend/stocks.db
 data/bhavcopy/*.csv
 !data/bhavcopy/dashboard_training_sample.csv
-!data/bhavcopy/README.md
