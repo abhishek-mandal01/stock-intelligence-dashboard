@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | Stock Intelligence Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="grid-layout">
+        <aside class="sidebar">
+            <a href="/" class="logo-box" aria-label="Landing page"><i class="fas fa-chart-line"></i></a>
+            <div class="nav-icon prototype-nav"><i class="fas fa-th-large"></i></div>
+            <div class="nav-icon prototype-nav"><i class="fas fa-calendar-alt"></i></div>
+            <div class="nav-icon prototype-nav"><i class="fas fa-file-alt"></i></div>
+            <div class="nav-icon prototype-nav"><i class="fas fa-video"></i></div>
+            <div class="nav-icon prototype-nav"><i class="fas fa-check-circle"></i></div>
+            <a href="profile.html" class="nav-icon active"><i class="fas fa-user"></i></a>
+
+            <div class="sidebar-bottom">
+                <div class="nav-icon has-dot prototype-nav">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </div>
+                <div class="nav-icon prototype-nav"><i class="fas fa-cog"></i></div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <div>
+                    <h1 class="page-title">Profile</h1>
+                    <p class="page-subtitle">Workspace preferences, watchlist focus, and market routine</p>
+                </div>
+                <div class="header-actions">
+                    <a href="/" class="glass action-btn profile-back-btn">
+                        <i class="fas fa-arrow-left"></i>
+                        Dashboard
+                    </a>
+                    <a href="profile.html" class="profile-avatar" aria-label="Profile">
+                        <img src="media/vecteezy_user-icon-on-transparent-background_19879186.png" alt="Profile">
+                    </a>
+                </div>
+            </header>
+
+            <section class="profile-grid">
+                <div class="glass profile-hero-card">
+                    <div class="profile-hero-top">
+                        <div class="profile-photo-large">
+                            <img src="media/vecteezy_user-icon-on-transparent-background_19879186.png" alt="Profile">
+                        </div>
+                        <div>
+                            <span class="sector-label">Market Analyst</span>
+                            <h2 class="profile-name">Abhishek Mandal</h2>
+                            <p class="profile-role">Intraday breadth, trend, and comparative equity tracking</p>
+                        </div>
+                    </div>
+                    <div class="profile-quick-stats">
+                        <div>
+                            <span>Watchlist</span>
+                            <strong>10</strong>
+                        </div>
+                        <div>
+                            <span>Primary Market</span>
+                            <strong>NSE</strong>
+                        </div>
+                        <div>
+                            <span>Default Range</span>
+                            <strong>30D</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass profile-card profile-preferences-card">
+                    <div class="section-head compact">
+                        <h3>Trading Focus</h3>
+                        <span class="section-badge">Live</span>
+                    </div>
+                    <div class="profile-focus-list">
+                        <div>
+                            <i class="fas fa-chart-line"></i>
+                            <span>Momentum leaders</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-shield-halved"></i>
+                            <span>Defensive breadth shifts</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-code-compare"></i>
+                            <span>Peer comparison</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass profile-card profile-preference-card">
+                    <div class="section-head compact">
+                        <h3>Preferences</h3>
+                        <span class="section-badge">Desk</span>
+                    </div>
+                    <div class="preference-list">
+                        <div>
+                            <span>Startup Symbol</span>
+                            <strong>INFY</strong>
+                        </div>
+                        <div>
+                            <span>Chart View</span>
+                            <strong>Line + Forecast</strong>
+                        </div>
+                        <div>
+                            <span>Theme</span>
+                            <strong>Dark Glass</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass profile-card profile-routine-card">
+                    <div class="section-head compact">
+                        <h3>Daily Routine</h3>
+                        <span class="section-badge">Market</span>
+                    </div>
+                    <div class="routine-grid">
+                        <div>
+                            <span class="routine-step">01</span>
+                            <strong>Scan breadth</strong>
+                            <p>Check advancers, decliners, and sector tilt before opening positions.</p>
+                        </div>
+                        <div>
+                            <span class="routine-step">02</span>
+                            <strong>Validate trend</strong>
+                            <p>Compare price action against moving average and volatility context.</p>
+                        </div>
+                        <div>
+                            <span class="routine-step">03</span>
+                            <strong>Review metrics</strong>
+                            <p>Use performance health and comparison mode to narrow watchlist names.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="sidebar.js"></script>
+</body>
+</html>

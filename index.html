@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Intelligence Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <div class="grid-layout">
+        <aside class="sidebar">
+            <a href="/" class="logo-box active" aria-label="Landing page"><i class="fas fa-chart-line"></i></a>
+            <div class="nav-icon prototype-nav"><i class="fas fa-th-large"></i></div>
+            <div class="nav-icon prototype-nav"><i class="fas fa-calendar-alt"></i></div>
+            <div class="nav-icon prototype-nav"><i class="fas fa-file-alt"></i></div>
+            <div class="nav-icon prototype-nav"><i class="fas fa-video"></i></div>
+            <div class="nav-icon prototype-nav"><i class="fas fa-check-circle"></i></div>
+            <a href="profile.html" class="nav-icon"><i class="fas fa-user"></i></a>
+            
+            <div class="sidebar-bottom">
+                <div class="nav-icon has-dot prototype-nav">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </div>
+                <div class="nav-icon prototype-nav"><i class="fas fa-cog"></i></div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <div>
+                    <h1 class="page-title">Stock Intelligence</h1>
+                    <p class="page-subtitle">Real-time market insights & predictive analysis</p>
+                </div>
+                <div class="header-actions">
+                    <div class="glass search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="stockSearch" placeholder="Search symbol..." class="search-input">
+                    </div>
+                    <a href="profile.html" class="profile-avatar" aria-label="Open profile">
+                        <img src="media/vecteezy_user-icon-on-transparent-background_19879186.png" alt="Profile">
+                    </a>
+                </div>
+            </header>
+
+            <div class="dashboard-grid">
+                <div class="left-column">
+                    <div id="listCard" class="glass list-card">
+                        <div class="section-head">
+                            <h3>Top Gainers</h3>
+                            <span id="viewAllBtn" class="section-link" onclick="viewAllCompanies()">View All</span>
+                        </div>
+                        <div id="companyList" class="company-list">
+                        </div>
+                    </div>
+
+                    <div class="glass market-breadth-card">
+                        <div class="section-head compact">
+                            <h3>Market Breadth</h3>
+                            <span class="section-badge">NSE</span>
+                        </div>
+
+                        <div class="breadth-grid">
+                            <div class="breadth-item">
+                                <p class="breadth-label">Advancers</p>
+                                <h4 id="advancersCount" class="breadth-value positive">0</h4>
+                            </div>
+                            <div class="breadth-item">
+                                <p class="breadth-label">Decliners</p>
+                                <h4 id="declinersCount" class="breadth-value negative">0</h4>
+                            </div>
+                            <div class="breadth-item">
+                                <p class="breadth-label">Avg Daily Move</p>
+                                <h4 id="avgMove" class="breadth-value">0.00%</h4>
+                            </div>
+                            <div class="breadth-item">
+                                <p class="breadth-label">Top Mover</p>
+                                <h4 id="topMover" class="breadth-value">-</h4>
+                            </div>
+                        </div>
+
+                        <div class="breadth-meter">
+                            <div id="breadthMeterFill" class="breadth-meter-fill"></div>
+                        </div>
+                        <p id="breadthNote" class="breadth-note">Neutral breadth</p>
+
+                        <div class="breadth-context">
+                            <div class="breadth-context-head">
+                                <span>Session Mix</span>
+                                <strong id="breadthBias">Even Tape</strong>
+                            </div>
+                            <div class="breadth-stack" aria-label="Market breadth mix">
+                                <span id="advancerShare" class="breadth-stack-segment advancer"></span>
+                                <span id="flatShare" class="breadth-stack-segment flat"></span>
+                                <span id="declinerShare" class="breadth-stack-segment decliner"></span>
+                            </div>
+                            <div class="breadth-insights">
+                                <div>
+                                    <i class="legend-dot advancer"></i>
+                                    <span><b id="advancerPct">0%</b> Up</span>
+                                </div>
+                                <div>
+                                    <i class="legend-dot flat"></i>
+                                    <span><b id="flatPct">0%</b> Flat</span>
+                                </div>
+                                <div>
+                                    <i class="legend-dot decliner"></i>
+                                    <span><b id="declinerPct">0%</b> Down</span>
+                                </div>
+                            </div>
+                            <p class="breadth-footnote">
+                                <span id="sectorTilt">-</span>
+                                <span id="breadthCoverage">0 tracked</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-column">
+                    <div class="glass chart-card">
+                        <div class="chart-head">
+                            <div>
+                                <span class="sector-label" id="currentSector">IT Services</span>
+                                <h2 class="symbol-title" id="currentSymbol">INFY</h2>
+                                <div class="price-row">
+                                    <span class="current-price" id="currentPrice">$0.00</span>
+                                    <span class="change-pill positive" id="currentChange">+0.00%</span>
+                                </div>
+                            </div>
+                            <div class="chart-actions">
+                                <button onclick="updateTimeframe(30)" class="time-btn glass action-btn active">30D</button>
+                                <button onclick="updateTimeframe(90)" class="time-btn glass action-btn">90D</button>
+                                <button onclick="toggleCompare()" class="glass action-btn">Compare</button>
+                                <button onclick="togglePrediction()" class="glass action-btn predict-btn">Predict AI</button>
+                            </div>
+                        </div>
+
+                        <div class="chart-wrap">
+                            <canvas id="mainChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="glass stat-card">
+                            <p class="stat-label">52-Week High</p>
+                            <h4 class="stat-value" id="52wHigh">$199.62</h4>
+                            <div class="meter">
+                                <div class="meter-fill fill-blue meter-75"></div>
+                            </div>
+                        </div>
+                        <div class="glass stat-card">
+                            <p class="stat-label">52-Week Low</p>
+                            <h4 class="stat-value" id="52wLow">$124.17</h4>
+                            <div class="meter">
+                                <div class="meter-fill fill-violet meter-25"></div>
+                            </div>
+                        </div>
+                        <div class="glass stat-card">
+                            <p class="stat-label">Volatility Score</p>
+                            <h4 class="stat-value" id="volatility">1.24</h4>
+                            <p class="stat-note">BETA RELATIVE TO S&P500</p>
+                        </div>
+                        <div class="glass stat-card">
+                            <p class="stat-label">7D Moving Avg</p>
+                            <h4 class="stat-value" id="ma7">$181.10</h4>
+                            <p class="stat-note positive-note">UP BULLISH TREND</p>
+                        </div>
+                    </div>
+
+                    <div id="comparePanel" class="hidden glass compare-panel">
+                        <div class="compare-head">
+                            <h3>Comparative Analysis</h3>
+                            <button onclick="toggleCompare()" class="icon-btn"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="compare-row">
+                            <select id="compareSelect" class="compare-select">
+                                <option value="TCS">Tata Consultancy Services (TCS)</option>
+                                <option value="INFY">Infosys (INFY)</option>
+                                <option value="RELIANCE">Reliance Industries (RELIANCE)</option>
+                            </select>
+                            <span class="vs-label">VS</span>
+                            <div class="current-comp-symbol" id="currentCompSymbol">INFY</div>
+                        </div>
+                    </div>
+
+                    <div class="glass metrics-card">
+                        <h3 class="metrics-title">Recent Performance Metrics</h3>
+                        <div class="table-wrap">
+                            <table class="metrics-table">
+                                <thead>
+                                    <tr>
+                                        <th>Metric</th>
+                                        <th class="center">Value</th>
+                                        <th class="center">Health</th>
+                                        <th class="right">Trend</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="performanceTable">
+                                    <tr>
+                                        <td>Relative Strength (RSI)</td>
+                                        <td class="center strong">64.2</td>
+                                        <td class="center"><span class="status-pill stable">Stable</span></td>
+                                        <td class="right"><i class="fas fa-arrow-trend-up trend-positive"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Price/Earnings (P/E)</td>
+                                        <td class="center strong">28.4x</td>
+                                        <td class="center"><span class="status-pill fair">Fair</span></td>
+                                        <td class="right"><i class="fas fa-minus trend-neutral"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Daily Volume</td>
+                                        <td class="center strong">52.4M</td>
+                                        <td class="center"><span class="status-pill high">High</span></td>
+                                        <td class="right"><i class="fas fa-arrow-trend-down trend-negative"></i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="sidebar.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
